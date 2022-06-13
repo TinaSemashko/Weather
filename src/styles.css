@@ -1,0 +1,48 @@
+.weather {
+  font-size: xx-large;
+  text-align: left;
+  border: solid;
+  border-color: rgb(233, 232, 232);
+  font-family: "Berkshire Swash", cursive;
+}
+.weather-next {
+  font-size: large;
+  text-align: left;
+  font-family: "Berkshire Swash", cursive;
+}
+
+.degrees {
+  font-family: cursive;
+}
+.days {
+  color: blue;
+  font-size: large;
+}
+.table {
+  text-align: center;
+  background-image: linear-gradient(
+    to top,
+    rgb(242, 186, 57),
+    rgb(244, 239, 225)
+  );
+}
+.table-big {
+  text-align: center;
+  background-image: linear-gradient(
+    to top,
+    rgb(242, 186, 57),
+    rgb(244, 239, 225)
+  );
+  border-style: solid;
+  border-color: black;
+}
+.form-group {
+  width: 60%;
+}
+.footer {
+  border: solid;
+  border-color: white;
+}
+.currant {
+  text-align: left;
+}

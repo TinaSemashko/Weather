@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <link href="src/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+     
+</head>
+
+  <body>
+         
+  <div class="container">
+      <table class="table-big">      
+          <tbody>            
+            <tr>              
+              <td colspan="2">
+                 <form id="search-city">
+                      <div  >
+                        <input type="text" id="input-city" class="form-group"
+                          placeholder="City search"
+                          class="form-control"
+                          autofocus = "on";
+                        />
+                        <input type="submit" value="Search" class="btn btn-primary" />
+                        <button type="button" id="buttCurr" class="btn btn-warning"> Current</button> 
+                      </div>                       
+                  </form>                      
+              </td>                           
+            </tr>
+            <tr>              
+              <td class="weather">
+                  <div >
+                      <h1 id="city">Vincennes</h1>
+                      <h5 id="data-time">  </h5>                      
+                      <img src="src/images/weather1.png" width="50"/>
+                      <span class="degrees">
+                      <span id="current-temp"><lage><strong> 17 </strong></lage></span>                      
+                      <a href="#" id="celsius"><sup> °C</a>
+                      <span><sup>|</span>
+                      <a href="#" id="fahrenheit"><sup> °F</a>
+                      </span>
+                    </div>
+              </td>
+              <td class="weather-next" >
+                  <div >
+                      <p id="humidity">Humidity:</p> 
+                      <p id="wind">Wind:</p>
+                  </div>
+              </td>             
+            </tr>
+            <tr>              
+              <td colspan="2">
+                  <table class="table">
+                       <tbody class="footer">
+                          <tr class="days">
+                              <td>Mon</td> 
+                              <td >Tue</td>
+                              <td ">Wed</td>
+                              <td >Thu</td>
+                              <td >Fri</td>
+                          </tr>
+                        <tr>
+                          <td><img src="src/images/weather2.png" width="80"/></td>
+                          <td><img src="src/images/weather3.png" width="80"/></td>
+                          <td><img src="src/images/weather4.png" width="80"/></td>
+                          <td><img src="src/images/weather5.png" width="80"/></td>
+                          <td><img src="src/images/weather6.png" width="80"/></td>
+                        </tr>
+                        <tr>
+                            <td >20°С</td> 
+                            <td>21°С</td>
+                            <td >19°С</td>
+                            <td >17°С</td>
+                            <td >10°С</td>
+                        </tr>
+                      </tbody>
+                    </table> 
+              </td>              
+            </tr>
+          </tbody>
+        </table>
+</div>
+
+    <script src="src/index.js"></script>
+  </body>
+</html>
