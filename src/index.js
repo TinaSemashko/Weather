@@ -4,11 +4,12 @@ let apiKey = "1e0dcb1b35c33c85c8f53ba10ee78100";
 let dataTime = document.querySelector("#data-time");
 let hours = now.getHours();
 let min = now.getMinutes();
-hours = hours < 10 ? (hours = "0" + hours) : hours;
-min = min < 10 ? (min = "0" + min) : min;
-let time = hours + ":" + min;
-dataTime.innerHTML =
-  new Intl.DateTimeFormat("en-FR", options).format(now) + " " + time;
+hours = hours < 10 ? (hours = `0${hours}`) : hours;
+min = min < 10 ? (min = `0${min}`) : min;
+let time = `${hours}:${min}`;
+dataTime.innerHTML = `${new Intl.DateTimeFormat("en-FR", options).format(
+  now
+)} ${time}`;
 
 let city = document.querySelector("#city");
 let currentTemp = document.querySelector("#current-temp");
