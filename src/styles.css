@@ -46,3 +46,10 @@
 .currant {
   text-align: left;
 }
+.weather .active {
+  color: black;
+  cursor: default;
+}
+.weather .active:hover {
+  text-decoration: none;
+}

@@ -13,8 +13,27 @@ dataTime.innerHTML = `${new Intl.DateTimeFormat("en-FR", options).format(
 
 let city = document.querySelector("#city");
 let currentTemp = document.querySelector("#current-temp");
-let humidity = document.querySelector("#humidity");
-let wind = document.querySelector("#wind");
+let sHumidity = document.querySelector("#humidity");
+let sWind = document.querySelector("#wind");
+let iconMain = document.querySelector("#icon-main");
+let description = document.querySelector("#description");
+
+function showWeatherAll(response, cityNew) {
+  let temp = Math.round(response.data.main.temp);
+  let humidity = response.data.main.humidity;
+  let wind = response.data.wind.speed;
+  celsiusTemperature = temp;
+  city.innerHTML = cityNew;
+  currentTemp.innerHTML = temp;
+  sHumidity.innerHTML = `Humidity: ${humidity}%`;
+  sWind.innerHTML = `Wind: ${wind} km/h`;
+  description.innerHTML = response.data.weather[0].description;
+  iconMain.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconMain.setAttribute("alt", response.data.weather[0].description);
+}
 
 function signUp(event) {
   event.preventDefault();
@@ -24,13 +43,7 @@ function signUp(event) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${foundCity}&units=metric`;
 
     function showWeather(response) {
-      let temp = Math.round(response.data.main.temp);
-      let humidityD = response.data.main.humidity;
-      let windD = response.data.wind.speed;
-      city.innerHTML = foundCity;
-      currentTemp.innerHTML = temp;
-      humidity.innerHTML = `Humidity: ${humidityD}%`;
-      wind.innerHTML = `Wind: ${windD} km/h`;
+      showWeatherAll(response, foundCity);
     }
 
     axios.get(`${apiUrl}&appid=${apiKey}`).then(showWeather);
@@ -42,33 +55,25 @@ function signUp(event) {
 let searchForm = document.querySelector("#search-city");
 searchForm.addEventListener("submit", signUp);
 
-function handlePosition(position) {
-  let lat = position.coords.latitude;
-  let long = position.coords.longitude;
-  let apiUrlGeo = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric`;
+function showCurrWeather() {
+  function handlePosition(position) {
+    let lat = position.coords.latitude;
+    let long = position.coords.longitude;
+    let apiUrlGeo = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric`;
 
-  function showCurrWeather(response) {
-    let tempC = Math.round(response.data.main.temp);
-    let humidityC = response.data.main.humidity;
-    let windC = response.data.wind.speed;
-
-    function showCurrWeather() {
-      currentTemp.innerHTML = tempC;
-      city.innerHTML = response.data.name;
-      humidity.innerHTML = `Humidity: ${humidityC}%`;
-      wind.innerHTML = `Wind: ${windC} km/h`;
+    function showCurrWeatherData(response) {
+      showWeatherAll(response, response.data.name);
     }
 
-    let element = document.querySelector("#buttCurr");
-    element.addEventListener("click", showCurrWeather);
+    axios.get(`${apiUrlGeo}&appid=${apiKey}`).then(showCurrWeatherData);
   }
-  axios.get(`${apiUrlGeo}&appid=${apiKey}`).then(showCurrWeather);
+
+  navigator.geolocation.getCurrentPosition(handlePosition);
 }
 
-navigator.geolocation.getCurrentPosition(handlePosition);
-//console.log(navigator);
+let element = document.querySelector("#buttCurr");
+element.addEventListener("click", showCurrWeather);
 
-/*
 function clickingC(event) {
   event.preventDefault();
   countDegrees("celsius");
@@ -82,14 +87,20 @@ function clickingF(event) {
 function countDegrees(eventName) {
   let currentTemp = document.querySelector("#current-temp");
   if (eventName === "celsius") {
-    currentTemp.innerHTML = "17";
+    currentTemp.innerHTML = celsiusTemperature;
+    celsius.classList.add("active");
+    fahrenheit.classList.remove("active");
   } else {
-    if (eventName === "fahrenheit") currentTemp.innerHTML = "62.6";
+    if (eventName === "fahrenheit")
+      currentTemp.innerHTML = (celsiusTemperature * 9) / 5 + 32;
+    fahrenheit.classList.add("active");
+    celsius.classList.remove("active");
   }
 }
+let celsiusTemperature = null;
+
 let celsius = document.querySelector("#celsius");
 celsius.addEventListener("click", clickingC);
 
 let fahrenheit = document.querySelector("#fahrenheit");
 fahrenheit.addEventListener("click", clickingF);
-*/
