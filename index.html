@@ -20,12 +20,12 @@
 
   <body>         
   <div class="container">
-      <table class="table-big">      
-          <tbody>            
-            <tr>              
-              <td colspan="2">
+      <div class="table">      
+                     
+            <div class="row">              
+              <div class="col-6">
                  <form id="search-city">
-                      <div  >
+                      
                         <input type="text" id="input-city" class="form-group"
                           placeholder="City search"
                           class="form-control"
@@ -33,16 +33,15 @@
                         />
                         <input type="submit" value="Search" class="btn btn-primary" />
                         <button type="button" id="buttCurr" class="btn btn-warning"> Current</button> 
-                      </div>                       
+                                            
                   </form>                      
-              </td>                           
-            </tr>
-            <tr>              
-              <td class="weather">
-                  <div >
+                </div>                           
+            </div>
+            <div class="row">              
+              <div class="col-6">
+                  <div class="weather">
                       <h5 id="data-time">  </h5> 
-                      <h1 id="city">Vincennes</h1>
-                      
+                      <h1 id="city">Vincennes</h1>                      
                       <h4 id="description">  </h4>                                            
                       <img id = "icon-main" src=""/>
                       <span class="degrees">
@@ -53,46 +52,26 @@
                       </span>
                       
                     </div>
-              </td>
-              <td class="weather-next" >
-                  <div >
+                  </div>
+              <div class="col-2">
+                  <div class="weather-next">
                       <p id="humidity">Humidity:</p>
                       <p id="wind">Wind:</p>
                   </div>
-              </td>             
-            </tr>
-            <tr>              
-              <td colspan="2">
-                  <table class="table">
-                       <tbody class="footer">
-                          <tr class="days">
-                              <td>Mon</td> 
-                              <td>Tue</td>
-                              <td>Wed</td>
-                              <td>Thu</td>
-                              <td>Fri</td>
-                          </tr>
-                        <tr>
-                          <td><img src="src/images/weather2.png" width="80"/></td>
-                          <td><img src="src/images/weather3.png" width="80"/></td>
-                          <td><img src="src/images/weather4.png" width="80"/></td>
-                          <td><img src="src/images/weather5.png" width="80"/></td>
-                          <td><img src="src/images/weather6.png" width="80"/></td>
-                        </tr>
-                        <tr>
-                            <td >20°С</td> 
-                            <td>21°С</td>
-                            <td >19°С</td>
-                            <td >17°С</td>
-                            <td >10°С</td>
-                        </tr>
-                      </tbody>
-                    </table> 
-              </td>              
-            </tr>
-          </tbody>
-        </table>
-</div>
+                </div> 
+            </div>
+          
+        </div>
+        <div id="forecast" class="table">
+        </div> 
+        <div class="contacts">
+         <small><em>This project was coded by Semashko Tina and is  
+            <a href = "https://github.com/TinaSemashko/Weather">open-sourced on GitHub </a>
+           and 
+           <a href = "https://app.netlify.com/sites/incandescent-cuchufli-36fc65/overview">hosted on Netlify </a>
+           </em></small>
+          </div>
+  </div>
 
     <script src="src/index.js"></script>
   </body>

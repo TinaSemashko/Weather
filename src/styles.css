@@ -1,8 +1,9 @@
 .weather {
+  margin: 0px auto;
+  padding: 15px 30px;
   font-size: xx-large;
   text-align: left;
-  border: solid;
-  border-color: rgb(233, 232, 232);
+
   font-family: "Berkshire Swash", cursive;
 }
 .weather-next {
@@ -22,15 +23,18 @@
   text-align: center;
   background-image: linear-gradient(
     to top,
-    rgb(242, 186, 57),
+    rgb(241, 215, 185),
     rgb(244, 239, 225)
   );
 }
-.table-big {
+.container {
+  max-width: 50%;
+  margin: 0px auto;
+  padding: 15px 60px;
   text-align: center;
   background-image: linear-gradient(
     to top,
-    rgb(242, 186, 57),
+    rgb(62, 33, 14),
     rgb(244, 239, 225)
   );
   border-style: solid;
@@ -39,17 +43,16 @@
 .form-group {
   width: 60%;
 }
-.footer {
-  border: solid;
-  border-color: white;
-}
-.currant {
-  text-align: left;
-}
+
 .weather .active {
   color: black;
   cursor: default;
 }
 .weather .active:hover {
   text-decoration: none;
+}
+.contacts {
+  color: rgb(245, 243, 238);
+  margin: 0 auto;
+  padding: 0 0 0 200;
 }

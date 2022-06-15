@@ -11,6 +11,8 @@ dataTime.innerHTML = `${new Intl.DateTimeFormat("en-FR", options).format(
   now
 )} ${time}`;
 
+let celsiusTemperature = null;
+
 let city = document.querySelector("#city");
 let currentTemp = document.querySelector("#current-temp");
 let sHumidity = document.querySelector("#humidity");
@@ -26,7 +28,7 @@ function showWeatherAll(response, cityNew) {
   city.innerHTML = cityNew;
   currentTemp.innerHTML = temp;
   sHumidity.innerHTML = `Humidity: ${humidity}%`;
-  sWind.innerHTML = `Wind: ${wind} km/h`;
+  sWind.innerHTML = `Wind: ${wind} m/s`;
   description.innerHTML = response.data.weather[0].description;
   iconMain.setAttribute(
     "src",
@@ -35,18 +37,22 @@ function showWeatherAll(response, cityNew) {
   iconMain.setAttribute("alt", response.data.weather[0].description);
 }
 
+function searchCity(cityS) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityS}&units=metric`;
+
+  function showWeather(response) {
+    showWeatherAll(response, cityS);
+  }
+
+  axios.get(`${apiUrl}&appid=${apiKey}`).then(showWeather);
+}
+
 function signUp(event) {
   event.preventDefault();
   let inputCity = document.querySelector("#input-city");
   let foundCity = inputCity.value;
   if (foundCity !== "") {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${foundCity}&units=metric`;
-
-    function showWeather(response) {
-      showWeatherAll(response, foundCity);
-    }
-
-    axios.get(`${apiUrl}&appid=${apiKey}`).then(showWeather);
+    searchCity(foundCity);
   } else {
     alert("Enter city please!");
   }
@@ -97,10 +103,34 @@ function countDegrees(eventName) {
     celsius.classList.remove("active");
   }
 }
-let celsiusTemperature = null;
 
 let celsius = document.querySelector("#celsius");
 celsius.addEventListener("click", clickingC);
 
 let fahrenheit = document.querySelector("#fahrenheit");
 fahrenheit.addEventListener("click", clickingF);
+
+function displayForecast() {
+  let forecast = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row" >`;
+  let days = ["Mon", "Tus", "Wen", "Thu", "Fri"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <div class="col-2" >
+    <div>${day}</div>
+    <img src="src/images/weather2.png" width="80"/>
+    <div>
+    <span>20°</span>
+    <span>12°</span>
+    </div>
+    </div>
+`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecast.innerHTML = forecastHTML;
+}
+displayForecast();
+searchCity("Paris");
