@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Parcel Sandbox</title>
+    <title>Project2</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"  href="src/styles.css" type="text/css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,20 +20,19 @@
 
   <body>         
   <div class="container">
-      <div class="table">      
-                     
+      <div class="table">
             <div class="row">              
               <div class="col-6">
-                 <form id="search-city">
-                      
+                 <form id="search-city" >                      
                         <input type="text" id="input-city" class="form-group"
                           placeholder="City search"
                           class="form-control"
                           autofocus = "on";
                         />
+                        <span class="form-group1">
                         <input type="submit" value="Search" class="btn btn-primary" />
-                        <button type="button" id="buttCurr" class="btn btn-warning"> Current</button> 
-                                            
+                        <button type="button" id="buttCurr" class="btn btn-warning" > Current</button> 
+                        </span>                 
                   </form>                      
                 </div>                           
             </div>
@@ -49,18 +48,16 @@
                       <a href="#" id="celsius" class = "active"><sup> °C</a>
                       <span><sup>|</span>
                       <a href="#" id="fahrenheit"><sup> °F</a>
-                      </span>
-                      
-                    </div>
-                  </div>
+                      </span>                      
+                   </div>
+                </div>
               <div class="col-2">
                   <div class="weather-next">
-                      <p id="humidity">Humidity:</p>
-                      <p id="wind">Wind:</p>
+                      <h4 id="humidity">Humidity:</h4>
+                      <h4 id="wind">Wind:</h4>
                   </div>
                 </div> 
-            </div>
-          
+            </div>          
         </div>
         <div id="forecast" class="table">
         </div> 
@@ -70,7 +67,7 @@
            and 
            <a href = "https://incandescent-cuchufli-36fc65.netlify.app/">hosted on Netlify </a>
            </em></small>
-          </div>
+        </div>
   </div>
 
     <script src="src/index.js"></script>

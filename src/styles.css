@@ -3,7 +3,6 @@
   padding: 15px 30px;
   font-size: xx-large;
   text-align: left;
-
   font-family: "Berkshire Swash", cursive;
 }
 .weather-next {
@@ -20,28 +19,30 @@
   font-size: large;
 }
 .table {
+  margin: 10px auto 10px;
+  padding: 10px 0;
   text-align: center;
-  background-image: linear-gradient(
-    to top,
-    rgb(241, 215, 185),
-    rgb(244, 239, 225)
-  );
+  background-image: linear-gradient(to top, burlywood, antiquewhite);
 }
 .container {
-  max-width: 50%;
-  margin: 0px auto;
-  padding: 15px 60px;
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 10px auto 10px;
+  padding: 10px 0;
   text-align: center;
-  background-image: linear-gradient(
-    to top,
-    rgb(62, 33, 14),
-    rgb(244, 239, 225)
-  );
-  border-style: solid;
-  border-color: black;
+  background-image: linear-gradient(to top, burlywood, antiquewhite);
+  border: solid;
+  border-color: peru;
 }
+
 .form-group {
+  padding: 0 0 10px;
   width: 60%;
+}
+
+.form-group1 {
+  margin: 50px 0px 50px;
 }
 
 .weather .active {
@@ -52,7 +53,7 @@
   text-decoration: none;
 }
 .contacts {
-  color: rgb(245, 243, 238);
+  color: rgb(34, 2, 2);
   margin: 0 auto;
   padding: 0 0 0 200;
 }

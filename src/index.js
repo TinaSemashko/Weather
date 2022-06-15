@@ -20,6 +20,45 @@ let sWind = document.querySelector("#wind");
 let iconMain = document.querySelector("#icon-main");
 let description = document.querySelector("#description");
 
+function getForecast(coordinates) {
+  let apiUrlF = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&units=metric`;
+  axios.get(`${apiUrlF}&appid=${apiKey}`).then(displayForecast);
+}
+
+function formatData(forecastDay) {
+  let date = new Date(forecastDay * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tus", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecastDates = response.data.daily;
+  let forecast = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row" >`;
+
+  forecastDates.forEach(function (forecastDay, index) {
+    if (index > 0 && index < 6) {
+      forecastHTML = `${forecastHTML}
+    <div class="col-2" >
+    <div class="days"><b>${formatData(forecastDay.dt)}</b></div>
+    <img src="src/images/${getIcon(
+      forecastDay.weather[0].icon
+    )}.png" width="80"/>
+    <div>
+    <span><strong>${Math.round(forecastDay.temp.max)}°</strong></span>
+    <span>${Math.round(forecastDay.temp.min)}°</span>
+    </div>
+    </div>
+`;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecast.innerHTML = forecastHTML;
+}
+
 function showWeatherAll(response, cityNew) {
   let temp = Math.round(response.data.main.temp);
   let humidity = response.data.main.humidity;
@@ -32,9 +71,11 @@ function showWeatherAll(response, cityNew) {
   description.innerHTML = response.data.weather[0].description;
   iconMain.setAttribute(
     "src",
-    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `src/images/${getIcon(response.data.weather[0].icon)}.png`
   );
   iconMain.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function searchCity(cityS) {
@@ -110,27 +151,29 @@ celsius.addEventListener("click", clickingC);
 let fahrenheit = document.querySelector("#fahrenheit");
 fahrenheit.addEventListener("click", clickingF);
 
-function displayForecast() {
-  let forecast = document.querySelector("#forecast");
-  let forecastHTML = `<div class="row" >`;
-  let days = ["Mon", "Tus", "Wen", "Thu", "Fri"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-    <div class="col-2" >
-    <div>${day}</div>
-    <img src="src/images/weather2.png" width="80"/>
-    <div>
-    <span>20°</span>
-    <span>12°</span>
-    </div>
-    </div>
-`;
-  });
-  forecastHTML = forecastHTML + `</div>`;
+function getIcon(codeIcon) {
+  const codeMapping = {
+    "01d": "CLEAR_DAY",
+    "01n": "CLEAR_NIGHT",
+    "02d": "PARTLY_CLOUDY_DAY",
+    "02n": "PARTLY_CLOUDY_NIGHT",
+    "03d": "CLOUDY",
+    "03n": "CLOUDY",
+    "04d": "CLOUDY",
+    "04n": "CLOUDY",
+    "09d": "RAIN_DAY",
+    "09n": "RAIN_NIGHT",
+    "10d": "RAIN_DAY",
+    "10n": "RAIN_NIGHT",
+    "11d": "TUNDERSTORM_DAY",
+    "11n": "TUNDERSTORM_NIGHT",
+    "13d": "SNOW",
+    "13n": "SNOW",
+    "50d": "FOG",
+    "50n": "FOG",
+  };
 
-  forecast.innerHTML = forecastHTML;
+  return codeMapping[codeIcon];
 }
-displayForecast();
+
 searchCity("Paris");
