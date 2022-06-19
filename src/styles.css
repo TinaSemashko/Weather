@@ -19,11 +19,20 @@
   font-size: large;
 }
 .table {
+  background-image: url("../src/images/paris.jpg");
+  height: 550px;
   margin: 10px auto 10px;
   padding: 10px 0;
   text-align: center;
-  background-image: linear-gradient(to top, burlywood, antiquewhite);
 }
+
+.table-small {
+  background-image: linear-gradient(to top, burlywood, antiquewhite);
+  margin: 10px auto 10px;
+  padding: 10px 0;
+  text-align: center;
+}
+
 .container {
   position: relative;
   display: block;
