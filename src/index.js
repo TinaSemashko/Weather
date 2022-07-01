@@ -36,12 +36,13 @@ function formatData(forecastDay) {
 function displayForecast(response) {
   let forecastDates = response.data.daily;
   let forecast = document.querySelector("#forecast");
+
   let forecastHTML = `<div class="row" >`;
 
   forecastDates.forEach(function (forecastDay, index) {
     if (index > 0 && index < 6) {
       forecastHTML = `${forecastHTML}
-    <div class="col-2" >
+    <div class="col" >
     <div class="days"><b>${formatData(forecastDay.dt)}</b></div>
     <img src="src/images/${getIcon(
       forecastDay.weather[0].icon
